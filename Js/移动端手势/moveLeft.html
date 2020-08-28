@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 100px;
+            width: 80vw;
+            background-color: royalblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        const box = document.querySelector('.box');
+
+        box.addEventListener('mousedown', (e) => {
+            let startX = e.clientX,
+                startY = e.clientY
+            function handleMove(e) {
+                let endX = e.clientX,
+                    endY = e.clientY
+                let diffX = endX - startX,
+                    diffY = endY - startY
+                if (diffX ** 2 + diffY ** 2 > 100) {
+                    if (Math.abs(diffX) >= Math.abs(diffY)) { //判定X轴的事件
+                        if (diffX < 0) {
+                            console.log("left");
+                        } else if (diffX > 0) {
+                            console.log("right");
+                        }
+                    }
+
+                }
+
+            }
+            document.addEventListener('mousemove', handleMove)
+
+            function handleUp() {
+
+                document.removeEventListener('mousemove', handleMove)
+                document.removeEventListener('mouseup', handleUp)
+
+            }
+            document.addEventListener('mouseup', handleUp)
+        })
+    </script>
+</body>
+
+</html>

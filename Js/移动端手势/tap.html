@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 100px;
+            width: 100px;
+            background-color: royalblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        // tap 点击
+        // 移动端的 click 有一定的延迟 所以要自己实现
+        // fastClick
+        const box = document.querySelector('.box')
+        box.addEventListener("click", () => { //click 相当于 touchend 与 mouseup
+            console.log("click start")
+        })
+        box.addEventListener('touchstart', ()=>{
+            console.log("自己的 tap 事件");
+        })
+        box.addEventListener("mousedown",()=>{
+            console.log("mousedown");
+        })
+        box.addEventListener("mouseup",()=>{
+            console.log("mouseup");
+        })
+    </script>
+</body>
+
+</html>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 100px;
+            width: 100px;
+            background-color: royalblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        // 优化 边界 及 移动点在按下位置 边界判定
+
+        const box = document.querySelector('.box');
+        const pageWidth = window.innerWidth
+        const pageHeight = window.innerHeight
+        const offsetWidth = box.offsetWidth
+        const offsetHeight = box.offsetHeight
+        box.addEventListener('mousedown', (e) => {
+            let offsetX = e.offsetX,
+                offsetY = e.offsetY
+
+            function handleMove(event) {
+                // 前提 已经 down
+                console.log(pageWidth, pageHeight);
+                console.log(event.clientX, event.clientY);
+
+                    box.style.transform =
+                        `translate3d(${event.clientX-offsetX}px, ${event.clientY-offsetY}px, 0)`;
+
+            }
+            document.addEventListener('mousemove', handleMove)
+
+            function handleUp() {
+
+                document.removeEventListener('mousemove', handleMove)
+                document.removeEventListener('mouseup', handleUp)
+            }
+            document.addEventListener('mouseup', handleUp)
+        })
+    </script>
+</body>
+
+</html>

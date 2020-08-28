@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+        }
+
+        #div2 {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            position: absolute;
+            top: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <script>
+        const div1 = document.getElementById("div1");
+        const div2 = document.getElementById("div2");
+        const setTimeOutAnimate = function (time = 5000, target = 800) {
+            let total = 0;
+            let num = target < total ? 0 : (target - total) / time * 16.7;
+            let move = total;
+            const timer = setInterval(() => {
+                move += num;
+                div1.style.left = move + 'px';
+                if (move >= target) {
+                    clearInterval(timer);
+                }
+            }, 1)
+        }
+        setTimeOutAnimate();
+
+        const animateFrame = function (target = 800, time = 5000) {
+            let total = 0;
+            let num = target <= total ? 0 : (target - total) / 1000;
+            let move = total;
+            const animate = function () {
+                move += num;
+                console.log(move);
+                div2.style.left = move + 'px';
+                
+                if (move <= target) {
+                    requestAnimationFrame(animate);
+                }
+            }
+            animate();
+        }
+        animateFrame();
+    </script>
+</body>
+
+</html>

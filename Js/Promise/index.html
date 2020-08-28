@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./index.js"></script>
+    <script>
+        $.ajax({
+            url: "http://neteasecloudmusicapi.zhaoboy.com/top/list?idx=1",
+            method: "GET",
+            async: true,
+            dataType: "JSON",
+            success(data) {
+                console.log("Jquery",data);
+                return data;
+            },
+            fail(err) {
+                console.log(data);
+                return err;
+            }
+        })
+
+
+        // post 请求一定要设置请求头
+
+        myAjax("GET", "http://neteasecloudmusicapi.zhaoboy.com/top/list?idx=1").then(res => {
+            console.log("myAjax",res);
+        }).catch(err => {
+            console.log(err);
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.common.dev.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <script>
+        let studentExtend = Vue.extend({
+            template: "<p><a :href='studentUrl'>{{studentName}}</a></p>",
+            data() {
+                return {
+                    studentUrl: "http://www.baidu.com",
+                    studentName: "我的链接"
+                }
+            },
+        })
+        const app = new Vue({
+            
+        })
+
+        new studentExtend().$mount("#test")
+    </script>
+</body>
+</html>

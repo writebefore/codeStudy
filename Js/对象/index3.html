@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var num = new Number(123)
+        // num.abc = 'aaa'
+        // console.log(num);
+        // num 参与运算又变回了数字，不参与运算它还能当做对象来使用
+        // 能有属性和方法,同理字符串和布尔值也一样
+        // 但是 null 和 undefined 不行
+
+        // 包装类
+        // var num = 4
+        // num.len = 3
+        // 隐式的包装
+        // new Number(4).len = 3
+        // delete len
+        // new Number(4).len undefined 执行console.log时发生的
+
+        var str = 'abc'
+        str += 1;// abc1
+        var test = typeof(str)//'string'
+        if(test.length == 6){
+            test.sign = 'typeof的返回结果可能为String'//new String(test).sign delete test.sign
+        }
+        console.log(test.sign);//new String(test).sign undefined
+    </script>
+</body>
+</html>

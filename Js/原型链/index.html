@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 构造函数实例化出来的对象能通过 __proto__ 找到构造函数的原型
+        Grand.prototype.lastName = "test"
+        function Grand(){
+
+        }
+        let grand = new Grand()
+        Father.prototype = grand
+        function Father(){
+            this.name = "testFather"
+        }
+
+        let father = new Father()
+        Son.prototype = father
+        function Son(){
+
+        }
+
+        let son = new Son()
+        console.log(son.name);
+
+
+
+
+    </script>
+</body>
+</html>

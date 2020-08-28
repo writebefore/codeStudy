@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.common.dev.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    .red{
+        color:red
+    }
+</style>
+<body>
+    <div id="app">
+        <!-- <p>{{message}}</p>
+        <input v-model="message" />
+        <div v-if="isShow">show</div>
+        <div v-else>hidden</div>
+        <div v-for="(item,index) in list" :key="index">
+            <p>{{item}}</p>
+        </div>
+        <div v-for="(item, index) in people" :key="item.id">
+            <p>{{item.name}}-{{item.age}}</p>
+        </div> -->
+        <div class="msg">
+            <p v-bind:class="{red : isRed}" @click="changeClass">{{message}}</p>
+            <input v-model="message"/>
+        </div>
+        
+    </div>
+
+    <script>
+        const vue = new Vue({
+            el: "#app",
+            data: {
+                message: "hello vue",
+                isShow: true,
+                list: [1, 2, 3, 4, 5, 6],
+                isRed: false,
+                people: [{
+                        id: 1,
+                        name: "test1",
+                        age: 1
+                    },
+                    {
+                        id: 2,
+                        name: "test2",
+                        age: 2
+                    },
+                    {
+                        id: 3,
+                        name: "test1",
+                        age: 3
+                    }
+                ]
+            },
+            methods: {
+                changeClass(){
+                    this.isRed = !this.isRed
+                }
+            },
+            // 拿不到DOM结构
+            beforeCreate() {
+                console.log("before create")
+            },
+            created() {
+                console.log("create")
+            },
+            beforeMount() {
+                console.log("beforeMount")
+            },
+            mounted() {
+                console.log("mounted")
+            },
+            beforeUpdate() {
+                console.log("beforeUpdate")
+            },
+            updated() {
+                console.log("updated")
+            },
+            beforeDestroy() {
+                console.log("beforeDestroy")
+            },
+            destroyed() {
+                console.log("destroyed");
+            },
+        })
+    </script>
+
+</body>
+
+</html>

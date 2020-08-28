@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.common.dev.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in outData" :key="index">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+    <button onclick="adds()">添加</button>
+
+    <script>
+        const outData = [1, 2, 3]
+
+        function test() {
+            console.log(123);
+        }
+
+        function adds() {
+            console.log(app);
+            app.outData[1] = 4
+            // Vue.set(outData, "count", 3)
+            console.log(app);
+        }
+
+        let app = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    outData
+                }
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

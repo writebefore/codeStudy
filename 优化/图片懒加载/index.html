@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .img-item{
+            display: block;
+            height: 300px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <img class="img-item" src="" lazyload="true" data-origin="./img/music1.jpg" >
+    <img class="img-item" src="" lazyload="true" data-origin="./img/music11.jpg" >
+    <img class="img-item" src="" lazyload="true" data-origin="./img/music3.jpg" >
+    <img class="img-item" src="" lazyload="true" data-origin="./img/music4.jpg" >
+    <img class="img-item" src="" lazyload="true" data-origin="./img/music5.jpg" >
+    <img class="img-item" src="" lazyload="true" data-origin="./img/music6.jpg" >
+    <img class="img-item" src="" lazyload="true" data-origin="./img/music7.jpg" >
+    <img class="img-item" src="" lazyload="true" data-origin="./img/music8.jpg" >
+    <img class="img-item" src="" lazyload="true" data-origin="./img/music9.jpg" >
+    <img class="img-item" src="" lazyload="true" data-origin="./img/music10.jpg" >
+    <img class="img-item" src="" lazyload="true" data-origin="./img/music12.jpg" >
+    <img class="img-item" src="" lazyload="true" data-origin="./img/music13.jpg" >
+
+    <script>
+        // 可视区域的高度 
+        // let viewHeight = window.innerHeight; ?
+        let viewHeight = document.documentElement.clientHeight;
+        console.log("total innerHeight:" + viewHeight);
+
+        const lazyLoad = function(){
+            let elements = document.querySelectorAll("img[data-origin][lazyload]");// css选择器
+            // console.log(elements);
+            
+            elements.forEach((item)=>{
+                let rect;
+                rect = item.getBoundingClientRect(); //获取页面上某个元素的几何信息
+                totalScroll = document.body.scrollTop;
+                console.log(rect);
+                if(rect.bottom >=0 && rect.top < viewHeight){ //在可视区域内
+                    // item.src = item.dataset.origin
+                    (function(){
+                        let img = new Image()
+                        img.src = item.dataset.origin
+                        img.onload = function(){
+                            item.src = img.src
+                        }
+                        // 移除变量
+                        item.removeAttribute("data-origin");
+                        item.removeAttribute("lazyload");
+                    }())
+                }
+            })
+        }
+
+        window.addEventListener("scroll",lazyLoad);
+        lazyLoad()
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  var a = "hello";
+        function foo() {
+            console.log(this);
+            console.log(this.a);
+            return this.a;
+        }
+
+        // var obj = {
+        //     a: 2,
+        //     foo: foo
+        // }
+
+        // var obj1 = {
+        //     a: 2,
+        //     obj2: obj2
+        // }
+
+        // console.log(obj.foo());
+
+        var obj = {
+            a:2,
+            foo:foo()
+        }
+        var a = "hello";
+        var bar =  obj.foo;
+
+        console.log(bar);
+    </script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://ustbhuangyi.com/sell/';
+const baseUrl = '';
 
 // eslint-disable-next-line import/prefer-default-export
 export function get(url) {

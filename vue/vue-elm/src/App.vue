@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 顶部栏 -->
-    <v-header></v-header>
+    <v-header :seller="seller"></v-header>
     <router-view />
   </div>
 </template>
@@ -29,8 +29,9 @@ export default {
       getSeller({
         id: this.seller.id,
       }).then((seller) => {
+        this.seller = { ...this.seller, ...seller };
         // eslint-disable-next-line no-console
-        console.log(seller);
+        console.log(this.seller);
       });
     },
   },

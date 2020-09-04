@@ -3,7 +3,10 @@
   <div class="goods">
     <div class="scroll-nav-wrapper">
       <!-- 左右联动的菜单 -->
-      <cube-scroll-nav :side="true" :data="goods" :options="scrollOptions" :current="current">
+      <cube-scroll-nav :side="true" :data="goods" v-if="goods.length"
+      :options="scrollOptions"
+      @change="changeHandler"
+      @sticky-change="stickyChangeHandler">
         <!-- 左侧菜单 -->
         <template slot="bar" slot-scope="props">
           <cube-scroll-nav-bar direction="vertical"
@@ -39,13 +42,18 @@
                   <span class="old" v-if="food.oldPrice">¥{{food.oldPrice}}</span>
                 </div>
                 <div class="cart-control-wrapper">
-                  <cart-control :food="food"></cart-control>
+                  <cart-control :food="food" @add="onAdd"></cart-control>
                 </div>
               </div>
             </li>
           </ul>
         </cube-scroll-nav-panel>
       </cube-scroll-nav>
+    </div>
+    <div class="shop-cart-wrapper">
+      <shop-cart :deliveryPrice="data.deliveryPrice"
+      ref="shopCart"
+      :minPrice="data.minPrice" :selectFoods="selectFoods"></shop-cart>
     </div>
   </div>
 </template>
@@ -54,6 +62,7 @@
 // eslint-disable-next-line import/extensions
 import SupportIco from '@/components/support-ico/support-ico';
 import CartControl from '@/components/cart-control/cart-control.vue';
+import ShopCart from '@/components/shop-cart/shop-cart.vue';
 import { getGoods } from '@/api';
 
 export default {
@@ -69,7 +78,7 @@ export default {
     return {
       goods: [],
       scrollOptions: {
-        click: false,
+        click: true,
         directionLockThreshold: 0,
       },
     };
@@ -89,6 +98,18 @@ export default {
       });
       return ret;
     },
+    // eslint-disable-next-line vue/return-in-computed-property
+    selectFoods() {
+      const foods = [];
+      this.goods.forEach((good) => {
+        good.foods.forEach((food) => {
+          if (food.count) {
+            foods.push(food);
+          }
+        });
+      });
+      return foods;
+    },
   },
   created() {
     // eslint-disable-next-line no-underscore-dangle
@@ -105,11 +126,24 @@ export default {
         this.goods = goods;
       });
     },
+    changeHandler(label) {
+      // eslint-disable-next-line no-console
+      console.log('changed to:', label);
+    },
+    stickyChangeHandler(current) {
+      // eslint-disable-next-line no-console
+      console.log('sticky-change', current);
+    },
+    // eslint-disable-next-line no-unused-vars
+    onAdd(target) {
+      // 小球下落
+      this.$refs.shopCart.drop(target);
+    },
   },
   components: {
-    // eslint-disable-next-line vue/no-unused-components
     SupportIco,
     CartControl,
+    ShopCart,
   },
 };
 </script>
@@ -213,5 +247,4 @@ export default {
       z-index: 50
       width: 100%
       height: 48px
-
 </style>

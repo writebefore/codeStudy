@@ -5,7 +5,7 @@
               <span class="inner icon-remove_circle_outline" ></span>
           </div>
       </transition>
-      <div class="crat-count">{{food.count}}</div>
+      <div class="crat-count" v-show="food.count > 0">{{food.count}}</div>
       <div class="cart-add icon-add_circle" @click.stop="add"></div>
   </div>
 </template>
@@ -19,18 +19,20 @@ export default {
   },
   methods: {
     decrease() {
-      // eslint-disable-next-line no-plusplus
-      this.food.count--;
+      if (this.food.count) {
+        // eslint-disable-next-line no-plusplus
+        this.food.count--;
+      }
     },
-    add() {
+    add(e) {
       if (!this.food.count) {
         // eslint-disable-next-line no-console
-        console.log(111);
         this.$set(this.food, 'count', 1);
       } else {
         // eslint-disable-next-line no-plusplus
         this.food.count++;
       }
+      this.$emit('add', e.target);
     },
   },
 };

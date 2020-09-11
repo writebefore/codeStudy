@@ -10,6 +10,10 @@ Toast.install = function(Vue, options) {
     }
 
     Vue.prototype.$toast = (tips, type) => {
+        if(document.querySelector('.vue-toast')){
+            return;
+        }
+
         if (type) {
             opt.defaultType = type // 如果传了type， 那么就使用该type作为位置
         }
@@ -19,7 +23,7 @@ Toast.install = function(Vue, options) {
         });
 
         let tpl = new toastTpl().$mount().$el;
-        document.body.appendChild(tpl);
+        document.body.appendChild(tpl)
         setTimeout(() => {
             document.body.removeChild(tpl)
         }, opt.duration)
@@ -31,7 +35,7 @@ Toast.install = function(Vue, options) {
         }
     })
 }
-
+    
 export {
     Toast
 }

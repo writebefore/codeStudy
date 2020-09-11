@@ -5,28 +5,32 @@
       <span slot="content">MUSIC</span>
       <i class="iconfont icon-username" slot="right-icon"></i>
     </v-header>
-    <!-- <router-view /> -->
+    <v-tab></v-tab>
 
+    <keep-alive>
+      <router-view />
+    </keep-alive>
+    
     <!-- menu -->
     <v-sidebar></v-sidebar>
   </div>
 </template>
 
 <script>
-import header from '@/components/header.vue'
-import sidebar from '@/components/sidebar'
+import header from "@/components/header.vue";
+import sidebar from "@/components/sidebar";
+import tab from "@/components/tab.vue";
 export default {
   components: {
-    'v-header': header,
-    'v-sidebar': sidebar, 
-  }
+    "v-header": header,
+    "v-sidebar": sidebar,
+    "v-tab": tab,
+  },
 };
-
 </script>
 
 <style lang="stylus">
-html,
-body {
+html, body {
   line-height: 1;
   font-family: PingFang SC, STHeitiSC-Light, Helvetica-Light, arial, sans-serif;
   -webkit-user-select: none;
@@ -34,7 +38,7 @@ body {
   -ms-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  background: rgba(122 , 41, 82, 0.9);
+  background: rgba(122, 41, 82, 0.9);
   color: #fff;
 }
 </style>

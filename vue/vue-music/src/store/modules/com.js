@@ -36,7 +36,7 @@ const actions = {
     commit(type.COM_CLEAR_SEARCH_HISTORY)
   },
   saveSearchHistory({commit, state}, query){
-    let searchHistory = [...query,...state.searchHistory.slice()]
+    let searchHistory = [query,...state.searchHistory.slice()]
     searchHistory = [...new Set(searchHistory)]
     commit(type.COM_SAVE_SEARCH_HISTORY, searchHistory)
   }

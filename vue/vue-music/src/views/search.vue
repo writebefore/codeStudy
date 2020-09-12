@@ -65,10 +65,12 @@ export default {
         this.hotKey = res.result.hots.slice(0, 10);
       });
     },
-    ...mapActions(["deleteSearchHistory", "clearSearchHistory","saveSearchHistory"]),
-    saveSearch() {
+    ...mapActions(["deleteSearchHistory", "clearSearchHistory","saveSearchHistory","selectPlaySong"]),
+    saveSearch(song) {
       // 保存历史记录
-      this.saveSearchHistory(this.query)
+      this.saveSearchHistory(this.query);
+      // 播放音乐
+      this.selectPlaySong(song);
     },
   },
   created() {

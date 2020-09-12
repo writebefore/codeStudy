@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const myNew = function (Fn) {
+            return function(){
+                
+                let obj = Object.create(Fn.prototype)
+                Fn.call(obj, ...arguments)
+                return obj;
+
+                // 和 new 一样 支持构造器返回 对象
+                // let obj = Object.create(Fn.prototype)
+                // let res = Fn.call(obj, ...arguments)
+                // return typeof(res) === 'object' ? res : obj;
+            }
+        }
+
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+
+        }
+
+        const test = myNew(Person)("Kim", 20)
+        const test2 = new Person("Li", 21)
+        console.log(test);
+        console.log(test2);
+    </script>
+</body>
+
+</html>

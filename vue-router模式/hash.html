@@ -1,0 +1,75 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-09-21 20:26:39
+ * @LastEditTime: 2020-09-21 20:55:12
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vue-router模式\hash.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <li><a href="#/home">home</a></li>
+    <li><a href="#/about">about</a></li>
+
+    <div id="routeView"></div>
+
+    <script>
+        // 路由视图
+
+        // window.addEventListener('DOMContentLoaded', onLoad);
+        // window.addEventListener('hashchange', onHashChange)
+
+
+        // let routeView = null;
+        // // 根据路由渲染对应的UI
+        // function onHashChange() {
+        //     switch (location.hash) {
+        //         case '#/home':
+        //             routeView.innerHTML = 'Home';
+        //             return;
+        //         case '#/about':
+        //             routeView.innerHTML = 'About';
+        //             return;
+        //     }
+        // }
+
+        // function onLoad() {
+        //     routeView = document.querySelector('#routeView');
+        //     onHashChange();
+        // }
+
+        let routeView = document.querySelector('#routeView');
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            switch (location.hash) {
+                    case '#/home':
+                        routeView.innerHTML = 'Home';
+                        return;
+                    case '#/about':
+                        routeView.innerHTML = 'About';
+                        return;
+                }
+        })
+
+        window.onhashchange = () => {
+                switch (location.hash) {
+                    case '#/home':
+                        routeView.innerHTML = 'Home';
+                        return;
+                    case '#/about':
+                        routeView.innerHTML = 'About';
+                        return;
+                }
+        }
+    </script>
+</body>
+
+</html>

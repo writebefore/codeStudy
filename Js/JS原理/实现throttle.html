@@ -1,0 +1,49 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-09-23 14:41:06
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-09-23 16:05:10
+ * @description: 实现节流
+ * @FilePath: \JS原理\实现throttle.html
+ * 利用闭包将定时器种子 timer 保存出来 未到时间 直接return; 到时timer=null
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const throttle = (fn, delay = 1000) => {
+            console.log("throttle执行了!");
+            let timer = null;
+            return function(...args) {
+                console.log("内部函数执行了");
+                if(timer){
+                    return null;
+                }
+                timer = setTimeout(() => {
+                    fn.apply(this, args);
+                    timer = null;
+                }, delay)
+            }
+        }
+
+        const fn = (a, b) =>{
+            console.log(a, b);
+        }
+
+        const test = throttle(fn)
+        
+        window.addEventListener('mousemove', () => {
+            test('节流函数', '123');
+        })
+    </script>
+</body>
+
+</html>

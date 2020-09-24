@@ -1,0 +1,38 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-09-23 16:30:51
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-09-23 17:05:57
+ * @description: In User Settings Edit
+ * @FilePath: \JS原理\实现call.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Function.prototype.myCall = function (context) {
+            // this指向调用call的对象
+            if (typeof this !== 'function') {
+                // 代表调用call的不是函数
+                throw new TypeError('caller is not a function')
+            }
+            const fn = Symbol();
+            const args = [...arguments].slice(1);
+            context = context || window;
+            // 将调用call函数的对象添加到context中
+            context[fn] = this;
+            const result = context[fn](...args);
+            delete context[fn]
+            return result;
+        }
+    </script>
+</body>
+
+</html>

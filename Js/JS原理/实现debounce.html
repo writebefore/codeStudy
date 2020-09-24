@@ -1,0 +1,46 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-09-23 14:40:52
+ * @LastEditTime: 2020-09-23 15:29:32
+ * @LastEditors: LHN
+ * @Description: 实现防抖
+ * @FilePath: \JS原理\实现debounce.html
+ * 利用闭包
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="input" type="text"/>
+    <script>
+        const debounce = (fn, delay=500) => {
+            console.log("debounce执行了!");
+            let timer = null;
+            return function name(...args) {
+                console.log("内部函数执行了");
+                if(timer){
+                    clearTimeout(timer);
+                }
+                timer = setTimeout(() => {
+                    fn.apply(this, args);
+                    timer = null;
+                }, delay)
+            }
+        }
+
+        const fn = (a) => {
+            console.log(a)
+        }
+
+        const test = debounce(fn)
+        
+        const input = document.addEventListener('keydown', () => {
+            test(1111);
+        })
+    </script>
+</body>
+</html>

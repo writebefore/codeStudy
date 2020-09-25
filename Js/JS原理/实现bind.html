@@ -1,0 +1,47 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-09-25 14:47:37
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-09-25 15:44:56
+ * @description: In User Settings Edit
+ * @FilePath: \JS原理\实现bind.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Function.prototype.myBind = function (context, ...args1) {
+            if (typeof this !== 'function') {
+                throw new TypeError('The caller is not a function');
+            }
+            const fn = this;
+            return function F(...args2) {
+                if (this instanceof F) {
+                    return new fn(...args1,...args2)
+                }
+                return fn.apply(context, [...args1, ...args2])
+            }
+        }
+
+        let obj = {
+            a: 2,
+            b: 2,
+        }
+
+        const test = function (a, b) {
+            return this.a + this.b;
+        }
+
+        console.log('myBind', test.myBind(obj, 1)(2));
+        console.log('bind', test.bind(obj, 1)(2));
+    </script>
+</body>
+
+</html>

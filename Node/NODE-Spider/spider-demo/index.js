@@ -1,3 +1,11 @@
+/*
+ * @Author: LHN
+ * @Date: 2020-09-14 15:14:03
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-09-25 18:46:15
+ * @description: In User Settings Edit
+ * @FilePath: \NODE-Spider\spider-demo\index.js
+ */
 const https = require('https')
 const cheerio = require('cheerio')
 const fs = require('fs')
@@ -11,7 +19,6 @@ https.get("https://movie.douban.com/top250",(res) => {
     res.on('data',(chunk) =>{
         html += chunk
     })
-
     // res数据加载完成，去执行xx逻辑
     res.on('end', () => {
         // 操作dmo

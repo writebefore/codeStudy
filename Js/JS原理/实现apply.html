@@ -1,0 +1,36 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-09-25 16:21:24
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-09-25 16:35:41
+ * @description: In User Settings Edit
+ * @FilePath: \JS原理\实现apply.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Function.prototype.myApply = function (context, arr = []) {
+            if (typeof this !== 'function') {
+                throw new TypeError('The caller is not function')
+            }
+            const _this = context || window;
+            const fn = Symbol();
+            _this[fn] = this;
+
+            const res = _this[fn](...arr);
+            delete _this[fn];
+            return res;
+        }
+
+    </script>
+</body>
+
+</html>

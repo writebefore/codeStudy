@@ -2,7 +2,7 @@
  * @Author: LHN
  * @Date: 2020-09-25 19:27:12
  * @LastEditors: LHN
- * @LastEditTime: 2020-09-25 21:04:27
+ * @LastEditTime: 2020-09-25 21:07:41
  * @description: In User Settings Edit
  * @FilePath: \vue-watch实现原理\watch.js
  */
@@ -36,13 +36,12 @@ class Watcher {
       set: function (val) {
         const oldVal = this.$data[_key];
         if (val === oldVal) {
-          return val;
+          return;
         }
         this.$data[_key] = val;
         this.$watch[_key] &&
           this.getBaseType(this.$watch[_key]) === "Function" &&
           this.$watch[_key].call(this, val, oldVal);
-        return val;
       },
     });
   }

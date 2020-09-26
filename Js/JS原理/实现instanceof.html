@@ -2,20 +2,34 @@
  * @Author: LHN
  * @Date: 2020-09-25 16:42:18
  * @LastEditors: LHN
- * @LastEditTime: 2020-09-25 16:43:00
+ * @LastEditTime: 2020-09-26 23:55:54
  * @description: In User Settings Edit
- * @FilePath: \JS原理\实现instanceof.html
+ * @FilePath: \codeStudy\Js\JS原理\实现instanceof.html
 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        
+        Object.prototype.myInstanceof = function (target) {
+            let _this = this;
+            while (_this != null) {
+                if (_this.__proto__ === target.prototype) {
+                    return true;
+                } else {
+                    _this = this.__proto__;
+                }
+
+            }
+            return false
+        }
     </script>
 </body>
+
 </html>

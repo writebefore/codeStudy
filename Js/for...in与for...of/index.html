@@ -1,0 +1,91 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-09-28 10:13:39
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-09-28 10:57:30
+ * @description: for...in 与 for...of 的区别
+ * @FilePath: \for...in与for...of\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // --------------------1----------------------
+        // const obj = {
+        //     a:1,
+        //     b:2,
+        //     c:3,
+        // }
+
+        // for(let key in obj){
+        //     console.log(key);
+        // }
+            
+        // --------------------2----------------------
+        // const arr = ['a','b','c']
+
+        // for(let key in arr){
+        //     console.log(key);
+        // }
+        
+        // --------------------3----------------------
+        // const arr = ['a','b'];
+        // arr.name = 'test'
+
+        // for(let key in arr){
+        //     console.log(key);
+        // }
+
+        // 区别
+        // for...in
+        // 循环返回的都是数据结构的键值名
+        // 遍历数组返回的是数组的下标
+        // for...in 还会遍历原型上的值和手动添加的其他键
+        // 特别情况下, 遍历的顺序不会按照对象的顺序进行
+        // 特殊情况指对象中的数字属性会被优先遍历, 且按顺序遍历
+
+
+        // for...of
+        // for...of 不能遍历对象
+        // 返回的是数组的元素
+
+
+        // Symbol.iterator
+        // 数组
+        // Map
+        // Set
+        // String
+        // arguments
+        // NodeList 对象
+
+
+        
+
+
+
+
+        // 对象中的常规属性和排序属性
+        // ECMAScript 规范定义了 数组属性应该按照索引值的大小升序排序
+        function Foo(){
+            this[100] = 'test-100';
+            this[1] = 'test-1';
+            this['B'] = 'test-B'
+            this['b'] = 'test-b';
+            this[50] = 'test-50';
+            this['ab'] = 'test-ab';
+            this["A"] = 'test-A';
+        }
+
+        let bar = new Foo()
+
+        for(let key in bar){
+            console.log(`index:${key} value:${bar[key]}`);
+        }
+    </script>
+</body>
+</html>

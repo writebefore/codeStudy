@@ -1,0 +1,45 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-09-28 14:41:07
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-09-28 15:20:27
+ * @description: In User Settings Edit
+ * @FilePath: \回流重绘\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #app {
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <div id="title">title</div>
+    </div>
+
+    <script>
+        // 事件的捕获与冒泡
+        let app = document.getElementById('app');
+        let title = document.getElementById('title')
+
+        app.addEventListener('click', (e) => {
+            console.log('app');
+            e.stopPropagation()
+        }, true)
+
+        title.addEventListener('click', (e) => {
+            console.log('title')
+            // e.stopPropagation()
+        })
+    </script>
+</body>
+
+</html>

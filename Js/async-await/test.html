@@ -1,0 +1,62 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-09-28 11:41:56
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-09-28 12:04:12
+ * @description: In User Settings Edit
+ * @FilePath: \async-await\test.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 第五题:输出什么，
+        // async/await原理是什么，把下
+        // 面这段代码翻译成Promise
+        // function getJson() {
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(function () {
+        //             console.log(2)
+        //             resolve(2)
+        //         }, 2000)
+        //     })
+        // }
+        // async function testAsync() {
+        //     await getJson()
+        //     console.log(3)
+        // }
+        // testAsync()
+
+
+
+
+
+        function getJson() {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    console.log(2)
+                    resolve(2)
+                }, 2000)
+            })
+        }
+
+        function testAsync() {
+            return Promise.resolve().then(function () {
+                return getJson()
+            }).then(function () {
+                console.log(3);
+            })
+        }
+
+        testAsync()
+    </script>
+</body>
+
+</html>

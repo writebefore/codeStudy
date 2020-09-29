@@ -1,0 +1,60 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-09-29 15:36:37
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-09-29 16:01:36
+ * @description: n叉树的后续遍历
+ * @FilePath: \算法\树的遍历.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var tree2 = {
+            name: "page.js",
+            require: [{
+                    name: "A.js",
+                    require: [{
+                        name: "B.js",
+                        require: [{
+                            name: "C.js"
+                        }]
+                    }]
+                },
+                {
+                    name: "D.js",
+                    require: [{
+                            name: "C.js"
+                        },
+                        {
+                            name: "E.js"
+                        }
+                    ]
+                }
+            ]
+        };
+        let res = [];
+        const helper = (tree) => {
+            if(tree){
+                if(tree.require && tree.require.length !== 0){
+                    let arr = tree.require;
+                    arr.forEach(item => {
+                        helper(item)
+                    })
+                }
+                res.push(tree.name);
+            }
+        }
+        helper(tree2)
+        console.log(res);
+    </script>
+</body>
+
+</html>

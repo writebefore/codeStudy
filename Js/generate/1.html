@@ -1,0 +1,49 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-09-30 14:40:54
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-09-30 15:41:06
+ * @description: In User Settings Edit
+ * @FilePath: \generate\1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 协程 概念
+        let fn = () => {
+            console.log('fn 函数执行了');
+        }
+        function* test() {
+            let a = yield fn();
+            console.log(1, a);
+            let b = yield 2;
+            console.log(2, b);
+        }
+
+        let s = test();
+        console.log(s.next('aaa'));
+        console.log(s.next('bbb'));
+        console.log(s.next('ccc'));
+        
+
+        function runGenerator(fn){
+            let {value, done} = fn.next();
+            if(done) return;
+            else{
+                value.then(() => {
+                    runGenerator(fn)
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>

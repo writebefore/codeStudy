@@ -2,7 +2,7 @@
  * @Author: LHN
  * @Date: 2020-10-01 14:47:55
  * @LastEditors: LHN
- * @LastEditTime: 2020-10-01 16:16:44
+ * @LastEditTime: 2020-10-02 15:27:35
  * @description: In User Settings Edit
  * @FilePath: \vue-mongoDB\class-helper\src\views\login\index.vue
 -->
@@ -62,6 +62,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
   data() {
     return {
@@ -85,13 +87,26 @@ export default {
           this.showLoginTip();
           this.login();
         } else if (!this.isLogin) {
+          if(this.rePassword != this.password){
+            this.$toast.fail('两次输入密码不一致')
+            return;
+          }
           this.showLoginTip();
+          this.$http.register({
+            account: this.account,
+            password: this.password
+          })
+          .then(res => {
+            this.$toast.clear();
+            this.setUserInfo(res.data);
+            this.$router.push('/home')
+          })
         }
       }
     },
     showLoginTip() {
       this.$toast.loading({
-        message: "登录中",
+        message: this.isLogin ? "登录中" : "注册中",
         forbidClick: true,
         loadingType: "spinner",
         duration: 0,
@@ -106,10 +121,13 @@ export default {
         })
         .then((res) => {
           this.$toast.clear();
+          // 存数据
+          this.setUserInfo();
           this.$router.push("/home");
           console.log(res);
         });
     },
+    ...mapActions(['setUserInfo'])
   },
 };
 </script>

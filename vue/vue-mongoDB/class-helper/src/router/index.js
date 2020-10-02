@@ -2,9 +2,9 @@
  * @Author: LHN
  * @Date: 2020-10-01 10:21:51
  * @LastEditors: LHN
- * @LastEditTime: 2020-10-01 14:58:03
+ * @LastEditTime: 2020-10-02 16:26:43
  * @description: In User Settings Edit
- * @FilePath: \class-helper\src\router\index.js
+ * @FilePath: \vue-mongoDB\class-helper\src\router\index.js
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -20,6 +20,11 @@ const routes = [
     name:'login',
     path:'/login',
     component:Login,
+  },
+  {
+    name:'home',
+    path:'/home',
+    component: () => import('../views/home/home.vue')
   }
 ]
 

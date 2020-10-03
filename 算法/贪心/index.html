@@ -1,0 +1,50 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-03 14:40:31
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-03 15:13:16
+ * @description: In User Settings Edit
+ * @FilePath: \算法\贪心\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 局部最优解
+        // 对每一个子问题求解 得到子问题得局部最优解
+        // 把子问题得局部1最优解合成原来问题的一个解
+        // 分数背包问题，可以装入分数的物品，使得装入的总质量一定，价值最大的装法。如果容量为 6，可以装入 1 和 2，25%容量装入 3，重量为 6 的物品总价值为 8.25。
+        // 物品   重量   价值
+        // 1       2      3
+        // 2       3      4
+        // 3       4      5
+
+
+        // 迭代整个商品, 总质量小于背包的容量, 装入物品
+        // 如果物品可以完整装入背包，就将其价值和重量分别计入已装的总价值和总质量
+        // 如果物品不能装入背包，就计算能够装入的比例，总价值和中质量
+        function knapSack(capacity, values, weights) {
+            let n = values.length, load = 0, val = 0;  // load 已装的总价值
+            for(let i = 0; i < n && load < capacity; i ++){
+                if(weights[i] <= (capacity - load)){
+                    val += values[i];
+                    load += weights[i];
+                } else{
+                    let r = (capacity - load) / weights[i];
+                    val += r * values[i];
+                    load += weights[i];
+                }
+            }
+            return 
+        }
+    </script>
+</body>
+
+</html>

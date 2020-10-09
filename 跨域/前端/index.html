@@ -1,0 +1,25 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-09 14:45:21
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-09 15:21:05
+ * @description: In User Settings Edit
+ * @FilePath: \跨域\前端\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- script 天然支持跨域 -->
+    <script>
+        function foo(...arg){
+            console.log('接收到后端的返回数据',...arg);
+        }
+    </script>
+    <script src="http://127.0.0.1:8088/api"></script>
+</body>
+</html>

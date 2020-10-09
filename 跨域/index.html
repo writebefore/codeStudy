@@ -1,0 +1,52 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-09 15:43:46
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-09 16:44:59
+ * @description: In User Settings Edit
+ * @FilePath: \跨域\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function jsonp(url, data, timeout) {
+
+            let timer = null;
+
+            return new Promise((resolve, reject) => {
+                timer = setTimeout(() => {
+                    timer = null;
+                    document.body.removeChild(script)
+                    delete window[methodName]
+                    reject('请求超时')
+                }, timeout);
+
+                let methodName = `jsonpCallback${Date.now()}`
+                window[methodName] = function (res) {
+                    clearTimeout(timer);
+                    document.body.removeChild(script)
+                    delete window[methodName]
+                    resolve(res)
+                }
+                const script = document.createElement('script');
+                script.setAttribute('src', url + '?callback=' + methodName + '&data=' + JSON.stringify(data));
+                document.body.appendChild(script);
+
+            })
+        }
+
+        jsonp('http:127.0.0.1:8088/api', {}, 2000).then(res => {
+            console.log(res);
+        }).catch(err => {console.log(err)})
+    </script>
+</body>
+
+</html>

@@ -2,17 +2,42 @@
  * @Author: LHN
  * @Date: 2020-10-05 14:49:38
  * @LastEditors: LHN
- * @LastEditTime: 2020-10-05 16:27:08
+ * @LastEditTime: 2020-10-06 10:17:02
  * @description: In User Settings Edit
  * @FilePath: \手写浏览器\查找子串.js
  */
 let response = `
 <html>
     <head></head>
+    <style>
+    #myid{
+      width:500px;
+      display: flex;
+      background-color: rgb(0, 0, 255);
+      align-items: center;
+      height: 500px;
+      justify-content: center;
+      flex-direction: row;
+    }
+    .cls1 {
+      width: 200px;
+      height: 100px;
+      background-color: rgb(255, 0, 0);
+    }
+    .cls2 {
+      width: 200px;
+      height: 200px;
+      background-color: rgb(0, 255, 0);
+    }
+    <style>
     <body>
-        <div> << </div>
+        <div id="myid">
+          <div class="cls1></div>
+          <div class="cls2"></div>
+        </div>
     </body>
 </html>
+
 `;
 
 // 解析成 DOM 树

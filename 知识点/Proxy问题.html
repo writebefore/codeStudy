@@ -1,0 +1,71 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-12 14:39:57
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-12 15:29:16
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\Proxy问题.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 实现一个函数toSafeObject(obj), 实现以下功
+        // 能:
+        // 1. 传入任意对象， 返回 - 一个Proxy对象
+        // 2. 传入非对象值， 返回原值
+        // 3. 返回的Proxy对象满足以下条件:
+        //     -访问Proxy 上原对象存在的属性， 返回原
+        // 属性的值
+        //     -
+        //     访问Proxy上原对象不存在的属性， 返
+        // 回一个新的Proxy对象
+        //     -
+        //     调用Proxy上原对象存在的方法， 调用
+        // 原方法
+        //     -
+        //     调用Proxy上原对象不存在的方法， 返
+        // 回undefined
+        // 例子:
+
+        const toSafeObject = (obj) => {
+            const handle = {
+                get(target, key) {
+                    if (target[key] !== undefined) {
+                        return Reflect.get(target, key);
+                    }
+                    return new Proxy({}, handle)
+                }
+            }
+
+
+            function isObject(value) {
+                return value !== null && typeof value === 'object';
+            }
+
+            return new Proxy(obj, handle);
+        }
+
+        const obj = {
+            foo: 1,
+            bar: {
+                a: () => {
+                    return 'wow'
+
+                },
+                b: Symbol('b'),
+            }
+        }
+        const safeObj = toSafeObject(obj);
+        console.log(safeObj.fo4o);
+    </script>
+</body>
+
+</html>

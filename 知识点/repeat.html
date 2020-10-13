@@ -1,0 +1,35 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-13 15:50:08
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-13 16:02:03
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\repeat.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function repeat(func, times, wait){
+            let timer = null;
+            return function(...args){
+                timer = setInterval(() => {
+                    func.call(this,...args);
+                    times --;
+                    if(times <= 0){
+                        clearInterval(timer);
+                    }
+                },wait)
+            }
+        }
+
+        const repeatFunc = repeat(alert,4, 3000);
+        repeatFunc("helloWorld");
+    </script>
+</body>
+</html>

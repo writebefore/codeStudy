@@ -1,0 +1,36 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-13 14:47:36
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-13 14:52:54
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\回流次数问题.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div id="DomA"></div>
+<div id="DomB"></div>
+<div id="DomC"></div>
+
+<body>
+    <script>
+        const DomA = document.getElementById('DomA');
+        const DomB = document.getElementById('DomB');
+        const DomC = document.getElementById('DomC');
+
+        function timer() {
+            DomA.style.width = DomA.offsetWidth + 1 + 'px' // 没有回流
+            DomB.style.width = DomA.offsetWidth + 1 + 'px' // 一次回流
+            DomC.style.width = DomA.offsetWidth + 1 + 'px' // 两次回流
+        }
+        setTimeout(timer,1000)
+    </script>
+</body>
+
+</html>

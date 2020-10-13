@@ -1,0 +1,40 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-13 15:18:07
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-13 15:29:51
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\清除浮动.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box{
+        width: 200px;
+    }
+
+    .float {
+        width: 100px;
+        height: 100px;
+        float: left;
+        outline: red solid 1px;
+    }
+    .box div{
+        clear: both;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="float"></div>
+        <div>外媒：软银愿景基金拟成立一家“空白支票收购公司”</div>
+    </div>
+</body>
+
+</html>

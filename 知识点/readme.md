@@ -1,3 +1,11 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-10 14:47:19
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-13 16:08:55
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\readme.md
+-->
 ## 基本数据类型
 
 ```js
@@ -51,3 +59,19 @@ css 里面 transform opacity 两个属性,
 ## padding百分比
 
 相对于宽度来计算的
+
+## 几次回流
+
+```js
+DomA.style.width = DomA.offsetWidth + 1 + 'px' // 没有回流
+DomB.style.width = DomA.offsetWidth + 1 + 'px' // 一次回流
+DomC.style.width = DomA.offsetWidth + 1 + 'px' // 两次回流
+
+// 应用 三次回流
+```
+
+## 函数是一等公民
+
+函数和其他类型(bool,string,number)一样
+
+都可以函数参数传递也可以作为函数的返回值返回

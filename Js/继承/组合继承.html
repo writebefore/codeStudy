@@ -1,0 +1,39 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-15 12:02:01
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-15 12:11:51
+ * @description: In User Settings Edit
+ * @FilePath: \继承\组合继承.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Supertype(name){
+            this.name = name;
+            this.colors = ['red','white','green'];
+        }
+
+        function SubType(name, age) {
+            SuperType.call(this, name);
+            this.age = age;
+        }
+
+        // SubType.prototype = new SuperType()
+        SubType.prototype = Object.create(Supertype.prototype)
+        SubType.prototype.constructor = SubType
+        SubType.prototype.sayAge = function(){
+            console.log(this.age);
+        }
+
+        let instance1 = new SubType('test',20);
+        instance1.colors.push('pink')
+    </script>
+</body>
+</html>

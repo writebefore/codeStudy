@@ -1,0 +1,32 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-14 15:06:33
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-14 15:54:26
+ * @description: In User Settings Edit
+ * @FilePath: \跨域\cors\前端\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let header = new Headers();
+        header.set('Content-Type', 'application/json');
+        header.set('X-custom', '123456789')
+        fetch('http://127.0.0.1:9090/api',{
+            headers: header,
+            data: JSON.stringify({a:1}),
+            method: 'POST'
+        })
+        .then(res => res.json())
+        .then(r => {
+            console.log(r);
+        })
+    </script>
+</body>
+</html>

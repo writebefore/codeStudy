@@ -1,11 +1,3 @@
-<!--
- * @Author: LHN
- * @Date: 2020-10-13 10:12:04
- * @LastEditors: LHN
- * @LastEditTime: 2020-10-14 10:38:41
- * @description: In User Settings Edit
- * @FilePath: \vue3-demo\src\App.vue
--->
 <template>
   <a-layout id="components-layout-demo-top" class="layout">
     <a-layout-header>
@@ -30,51 +22,53 @@
           <a-col :span="6">
             <a-card title="Default size card" style="width: 300px">
               <template v-slot:extra><a href="#">more</a></template>
-              <p>计划总时间</p>
+              <p>计划总时间: {{allTime}}</p>
             </a-card>
           </a-col>
-          <a-col :span="16" :offset="2"><router-view></router-view></a-col>
+          <a-col :span="16" :offset="2">
+            <router-view></router-view>
+          </a-col>
         </a-row>
       </div>
     </a-layout-content>
     <a-layout-footer style="text-align: center">
-      {{ count }}
+      {{count}}
     </a-layout-footer>
   </a-layout>
 </template>
-
 <script>
 // composition api
-// eslint-disable-next-line no-unused-vars
-import { computed, reactive, toRefs, watch } from "vue";
-import { useRoute } from "vue-router";
-import { useStore } from "vuex";
+import { computed, reactive, toRefs, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 export default {
-  // eslint-disable-next-line no-unused-vars
-  setup(props, context) {
-    // 入口函数 默认只执行一次 里面没有this拿不到vue的实例
-    const route = useRoute();
+  setup (props, context) { // 入口函数 默认只执行一次 里面没有this拿不到vue的实例
+    const route = useRoute()
+    const store = useStore()
     const state = reactive({
       // selectedKeys: [],
       count: 0,
-    });
-    const store = useStore();
-    console.log(store.getters.allTimes);
+      selectedKeys: computed(() => {
+        return [route.path]
+      }),
+      allTime: store.getters.allTime
+    })
     // watch(() => route.path, (newVal) => {
     //   state.selectedKeys = [newVal]
     // }, { immediate: true })  // immediate 立即执行
 
-    const selectedKeys = computed(() => {
-      return [route.path];
-    });
+    // const selectedKeys = computed(() => {
+    //   return [route.path]
+    // })
+
 
     return {
       // selectedKeys: state.selectedKeys,
       // count: state.count
       ...toRefs(state), // 保证数据是响应式的, 且做了解构
-      selectedKeys,
-    };
-  },
+      // selectedKeys,
+    }
+  }
 };
 </script>
 <style>
@@ -86,4 +80,3 @@ export default {
   float: left;
 }
 </style>
-

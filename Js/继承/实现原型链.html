@@ -1,0 +1,39 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-15 11:19:11
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-15 11:30:07
+ * @description: In User Settings Edit
+ * @FilePath: \继承\实现原型链.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function SuperType(){
+            this.prototype = true;
+        }
+
+        SuperType.prototype.getSuperValue = function(){
+            return this.prototype
+        }
+
+        function SubType(){
+            this.subProperty = false
+        }
+
+        //继承, 用SuperType的实例来重写SuperType()
+        SubType.prototype = new SuperType()
+        SubType.prototype.getSubValue = function(){
+            return this.subProperty;
+        }
+        let instance = new SubType()
+        console.log(instance.getSuperValue());
+    </script>
+</body>
+</html>

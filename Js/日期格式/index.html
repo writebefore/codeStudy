@@ -1,0 +1,42 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-14 16:16:59
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-14 16:27:11
+ * @description: In User Settings Edit
+ * @FilePath: \日期格式\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // dateFormat(new Date('2020-12-01'), 'yyyy/MM/dd') // 2020/12/01
+        // dateFormat(new Date('2020-04-01'), 'yyyy/MM/dd') // 2020/04/01
+        // dateFormat(new Date('2020-04-01'), 'yyyy年MM月dd日') // 2020年04月01日
+        // 写一个日期格式化函数
+        // const dateFormat = (dateInput, format) => {
+        //     // todo
+        // }
+            
+        const dateFormat = (dateInput, format) => {
+            const date = new Date(dateInput);
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            format = format.replace('yyyy',year);
+            format = format.replace('MM', month);
+            format = format.replace('dd',day);
+            return format;
+        }
+        console.log(dateFormat(new Date('2020-04-01'), 'yyyy年MM月dd日'));
+    </script>
+</body>
+
+</html>

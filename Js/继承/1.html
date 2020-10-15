@@ -1,0 +1,49 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-15 10:13:31
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-15 11:05:42
+ * @description: In User Settings Edit
+ * @FilePath: \继承\1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function myNew(fn,...args){
+        //     let obj = Object.create(fn.prototype);
+        //     fn.call(obj,...args);
+        //     return obj;
+        // }
+
+        function Person() {
+
+        }
+        let p1 = new Person()
+        console.log(p1.constructor);// Fn Person
+        Person.prototype = {
+            name: 'test',
+            constructor: Person,
+        }
+
+        Object.defineProperty(Person.prototype,constructor,{
+            enumerable:false,
+            value:Person,
+        })
+        let p2 = new Person()
+        console.log(p2.constructor);// Fn object
+
+
+
+        
+    </script>
+</body>
+
+</html>

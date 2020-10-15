@@ -1,0 +1,73 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-14 16:30:07
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-14 16:51:40
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\继承.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 填充 inherit 完成输出。
+        // function inherit() {
+
+        // }
+
+        // let animalNum = 0;
+
+        // function Animal(name) {
+        //     animalNum++;
+        //     this.name = name;
+        // }
+        // Animal.prototype.getName = function () {
+        //     return this.name;
+        // };
+        // const Cat = inherit(Animal, {
+        //     say: function () {
+        //         console.log(`NO${animalNum}:${this.getName()}`);
+        //     }
+        // });
+        // const cat1 = new Cat('小花');
+        // cat1.say(); // NO1:小花
+
+
+        function inherit(fn, obj){
+            F.prototype = obj;
+            F.prototype.__proto__ = fn.prototype
+            F.constructor = F;
+            function F(...args){
+                fn.call(this,...args);
+            }
+            return F;
+        }
+        
+        let animalNum = 0;
+
+        function Animal(name) {
+            animalNum++;
+            this.name = name;
+        }
+        Animal.prototype.getName = function () {
+            return this.name;
+        };
+        const Cat = inherit(Animal, {
+            say: function () {
+                console.log(`NO${animalNum}:${this.getName()}`);
+            }
+        });
+        const cat1 = new Cat('小花');
+        cat1.say(); // NO1:小花
+
+    </script>
+</body>
+
+</html>

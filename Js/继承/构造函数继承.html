@@ -1,0 +1,31 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-15 11:46:25
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-15 11:50:31
+ * @description: In User Settings Edit
+ * @FilePath: \继承\构造函数继承.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function SuperType(){
+            this.color = ['red', 'green', 'blue']
+        }
+
+        function SubType(){
+            SubType.call(this)
+        }
+
+        let instance1 = new SubType();
+        instance1.colors.push('pink')
+        console.log(instance1.color);
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-16 14:42:05
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-16 15:10:02
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\找到网页中h开头的标签.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const html = document.documentElement;
+        const res = {};
+        const DFS = (root) => {
+            if (typeof root === 'object' && root.tagName !== undefined) {
+                const rootName = root.tagName.toLowerCase();
+                if (rootName[0] === 'h') {
+                    if (res[rootName] !== undefined) {
+                        res[rootName] += 1;
+                    } else {
+                        res[rootName] = 1;
+                    }
+                }
+                if (root.children.length !== 0) {
+                    for (let index in root.children) {
+                        DFS(root.children[index])
+                    }
+                }
+            } else{
+                return;
+            }
+        }
+        DFS(html);
+        console.log(res);
+    </script>
+</body>
+
+</html>

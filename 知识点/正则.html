@@ -1,0 +1,29 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-15 15:45:45
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-15 15:50:53
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\正则.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var regex = /a/g;
+        // 全局匹配时有状态
+        console.log(regex.test('abcabc'),regex.lastIndex);
+        console.log(regex.test('abcabc'),regex.lastIndex);
+        console.log(regex.test('abcabc'),regex.lastIndex);
+        console.log(regex.test('abcabc'),regex.lastIndex);
+    </script>
+</body>
+
+</html>

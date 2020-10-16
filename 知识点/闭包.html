@@ -1,0 +1,31 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-15 16:10:41
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-15 17:06:16
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\闭包.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function makeA() {
+            let a = false;
+            return function () {
+                a = !a;
+                return a + 1;
+            }
+        }
+        let A = makeA(); 
+    </script>
+</body>
+
+</html>

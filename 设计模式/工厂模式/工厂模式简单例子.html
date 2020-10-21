@@ -1,0 +1,36 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-17 13:11:47
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-17 13:22:33
+ * @description: 工厂模式
+ * @FilePath: \设计模式\工厂模式.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function createPerson(name) {
+            const person = {};
+            person.name = name;
+            person.getName = function () {
+                console.log(this.name);
+            }
+            return person;
+        }
+
+        const test = createPerson('test');
+        person.getName();
+        console.log(test.getName());
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-17 13:23:50
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-19 10:55:02
+ * @description: 工厂模式2
+ * @FilePath: \设计模式\工厂模式\工厂模式2改进.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Person 构造函数
+        function Person(name) {
+            this.name = name
+        }
+
+        Person.prototype.getName = function () {
+            console.log(this.name);
+        }
+
+        // Car构造函数
+        function Car(model) {
+            this.model = model;
+        }
+
+        Car.prototype.getModel = function () {
+            console.log(this.model);
+        }
+
+        // 工厂模式体
+        function create(type, ...param) {
+            if (this instanceof create) {
+                return new this[type](...param);
+            } else {
+                return new create(type, ...param)
+            }
+
+            // return new this[type](param);
+        }
+
+
+        create.prototype = {
+            person: Person,
+            car: Car
+        }
+
+        // const person1 = new create('person', 'test') // 工厂模式2
+        const person1 = new create('person', 'test');
+        person1.getName();
+        const car1 = create("car", "BUGATTI");
+        car1.getModel();
+    </script>
+</body>
+
+</html>

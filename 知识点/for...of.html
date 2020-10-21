@@ -1,0 +1,82 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-19 14:54:42
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-19 15:45:06
+ * @description: 实现可迭代的对象
+ * @FilePath: \知识点\for...of.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 实现一个可用for...of迭代的对象
+        // let obj = {
+        //     a: 1,
+        //     b: 2,
+        //     [Symbol.iterator]: () => {
+        //         let keys = Object.keys(obj);
+        //         return {
+        //             next() {
+        //                 if (keys.length === 0) {
+        //                     return {
+        //                         done: true,
+        //                         value: undefined
+        //                     }
+        //                 }
+        //                 let k = keys.shift();
+        //                 return {
+        //                     done:false,
+        //                     value: obj[k]
+        //                 }
+        //             }
+        //         };
+        //     }
+        // }
+
+        // class A {
+        //     items = ['1', '2', '3'];
+        //     [Symbol.iterator] = function () {
+        //         let that = this;
+        //         let i = 0;
+        //         return {
+        //             next() {
+        //                 if (i === that.items.length) {
+        //                     return {
+        //                         done: true,
+        //                         value: undefined
+        //                     }
+        //                 }
+        //                 let res = {
+        //                     done: false,
+        //                     value: that.items[i]
+        //                 }
+        //                 i++;
+        //                 return res;
+        //             }
+        //         }
+        //     }
+        // }
+        // const a = new A()
+        // for (const i of a) {
+        //     console.log(i);
+        // }
+        class B{
+            constructor(){
+                this.b = 1;
+            }
+            sayB(){
+                console.log(this.b);
+            }
+        }
+    </script>
+</body>
+
+</html>

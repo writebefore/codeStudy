@@ -1,0 +1,70 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-21 16:13:33
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-21 17:44:17
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\将数组转成树形结构的对象.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 编程题：将数组转成树形结构的对象
+      var locationList = [
+        { id: 0, name: "中国" },
+        { id: 1, pid: 0, name: "北京市" },
+        { id: 2, pid: 1, name: "昌平区" },
+        { id: 3, pid: 1, name: "海淀区" },
+        { id: 4, pid: 0, name: "南昌市" },
+        { id: 5, pid: 4, name: "青山湖区" },
+      ];
+      
+      
+    //   function transform(arr){
+    //       let root = arr.shift();
+    //       function insert(pid, child){
+    //           function walk(node){
+    //             if(node.id === pid) {
+    //                 if(!node.sub) node.sub =[]
+    //                 node.sub.push(child);
+    //                 return;
+    //             }
+    //             if(node.sub){
+    //                 for(let c of node.sub){
+    //                     walk(c)
+    //                 }
+    //             }
+    //           }
+    //           walk(root);
+    //       }
+    //       for(let child of arr){
+    //           let {pid} = child;
+    //           insert(pid,child)
+    //       }
+
+    //       return root;
+    //   }
+      function transform(arr){
+        const map = new Map();
+        const root = arr[0];
+        map.set(0,root);
+        for(let i = 1; i < arr.length; i ++){
+            const node = arr[i];
+            const pNode = map.get(node.pid);
+            if(!pNode.sub) pNode.sub = [];
+            pNode.sub.push(node);
+            map.set(i,node)
+        }
+        return root
+      }
+      console.log(transform([...locationList])); 
+      
+    </script>
+  </body>
+</html>

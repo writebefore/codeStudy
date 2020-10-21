@@ -1,0 +1,59 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-21 15:05:16
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-21 16:01:19
+ * @description: In User Settings Edit
+ * @FilePath: \动画\2.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #el {
+        transition: all 1s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="el">123</div>
+    <script>
+      const divNode = document.createElement("div");
+      const el = document.querySelector("#el");
+      divNode.style.width = "20px";
+      divNode.style.height = "20px";
+      divNode.style.backgroundColor = "red";
+      let img = new Image();
+      img.src = "https://cn.bing.com/th?id=OHR.ChameleonIndonesia_ZH-CN1631787171_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp";
+      const prePosition = el.getBoundingClientRect();
+      setTimeout(() => {
+        document.body.insertBefore(img, el);
+        let currentPosition = el.getBoundingClientRect();
+        // el.style.transform = `translateY(-20px)`
+        // el.style.transform = `translateY(0px)`
+        let keyFrame = [
+          {
+            transform: `translateY(${prePosition.top - currentPosition.top}px)`,
+          },
+          {
+            transform: `translateY(0px)`,
+          },
+        ];
+        // 播放
+        el.animate(keyFrame, {
+          duration: 300,
+          easing: "ease-in-out",
+        });
+      }, 3000);
+    </script>
+  </body>
+</html>

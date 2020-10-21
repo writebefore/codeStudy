@@ -1,0 +1,56 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-21 14:43:22
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-21 15:02:56
+ * @description: In User Settings Edit
+ * @FilePath: \动画\1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #el {
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="el">123</div>
+    <script>
+        const divNode = document.createElement('div');
+        const el = document.querySelector('#el')
+        divNode.style.width = '20px';
+        divNode.style.height = '20px';
+        divNode.style.backgroundColor = 'red';
+        setTimeout(() => {
+            document.body.insertBefore(divNode, el);
+            // el.style.transform = `translateY(-20px)`
+            // el.style.transform = `translateY(0px)`
+            let keyFrame = [
+                {
+                    transform:'translateY(-20px)'
+                },
+                {
+                    transform:'translateY(0px)'
+                }
+            ]
+            el.animate(keyFrame,{
+                duration: 300,
+                easing: 'ease-in-out'
+            });
+        }, 3000)
+    </script>
+</body>
+
+</html>

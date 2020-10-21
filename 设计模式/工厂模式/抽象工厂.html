@@ -1,0 +1,68 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-19 11:02:51
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-19 11:25:00
+ * @description: In User Settings Edit
+ * @FilePath: \设计模式\工厂模式\抽象工厂.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class MobilePhoneFactory {
+            createOS() {
+                
+            }
+
+            createHardWare() {
+
+            }
+        }
+
+
+        class FakeStar extends MobilePhoneFactory {
+            createOS(){
+                return new AndroidOS()
+            }
+
+            createHardWare(){
+                return new QualcommHardWare()
+            }
+        }
+
+        class OS{
+            controlHardWare(){
+                throw new Error('你需要将我重写')
+            }
+        }
+
+        class AndroidOS extends OS{
+            controlHardWare(){
+                console.log('重写');
+            }
+        }
+
+        class IosOS extends OS{
+            controlHardWare(){
+                console.log('重写2');
+            }
+        }
+
+        class HardWare {
+            operateByOrder(){
+                throw new Error('你需要将我重写')
+            }
+        }
+
+        const myPhone = new FakeStar()
+        const myOS = myPhone.createOS()
+        myOS.controlHardWare()
+    </script>
+</body>
+</html>

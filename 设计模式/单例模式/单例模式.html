@@ -1,0 +1,33 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-19 11:42:34
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-19 11:57:10
+ * @description: In User Settings Edit
+ * @FilePath: \设计模式\单例模式\单例模式.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class SingleModel{
+            constructor(){
+                
+            }
+            static getInstance() {
+                // 判定是否被 new 过了
+                if(!SingleModel.instance) {
+                    SingleModel.instance = new SingleModel();
+                }
+                SingleModel.instance = new SingleModel();
+                return SingleDog.instance;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-26 16:09:38
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-26 16:31:28
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\快排\快速排序.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = [5, 1, 3, 7, 8, 5, 4, 2, 3, 4];
+      const quickSort = (arr) => {
+        if(arr.length <= 1) return arr;
+        let arr1 = [], arr2 = [];
+        let p = arr[0];
+        for(let i = 1; i < arr.length; i ++){
+            if(arr[i] < p) {
+                arr1.push(arr[i]);
+            } else{
+                arr2.push(arr[i]);
+            }
+        }
+        let res = [...quickSort(arr1), p, ...quickSort(arr2)]
+        return res;
+      };
+      console.log(quickSort(arr));
+    </script>
+  </body>
+</html>

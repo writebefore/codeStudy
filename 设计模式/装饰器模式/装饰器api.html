@@ -1,0 +1,31 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-23 11:39:48
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-23 11:55:15
+ * @description: In User Settings Edit
+ * @FilePath: \设计模式\装饰器模式\装饰器api.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function classDecorator(target){
+            target.hasDecorator = true;
+            return target;
+        }
+
+        // @classDecorator
+        // class Button{
+
+        // }
+
+        console.log('Button 是否被装饰了',Button.hasDecorator);
+    </script>
+</body>
+</html>

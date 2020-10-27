@@ -1,0 +1,32 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-27 15:00:53
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-27 16:07:15
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\实现一个sleep.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const sleep = (delay) => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve();
+          }, delay);
+        });
+      };
+      async function test() {
+        await sleep(2000);
+        console.log(123);
+      }
+      test();
+    </script>
+  </body>
+</html>

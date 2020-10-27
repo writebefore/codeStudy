@@ -1,0 +1,56 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-26 17:00:59
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-26 19:11:59
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\实现bind.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   实现ES5中Function原型的bind方法， 使得以下程序最后能输出'success'
+        function Animal(name, color) {
+         this.name = name;
+         this.color = color;
+        }
+        Animal.prototype.say = function () {
+         return `I'm a ${this.color} ${this.name}`;
+        };
+        // const Cat = Animal.bind(null, 'cat');
+        // const cat = new Cat('white');
+        // if (cat.say() === 'I\'m a white cat' && cat instanceof Cat && cat instanceof Animal) {
+        //  console.log('success');
+        // }
+
+        Function.prototype.myBind = function(context, ...bindArgs){
+            context = context || window
+            const fn = this;
+            if(typeof fn !== "function"){
+                throw new ReferenceError('The call is not a function')
+            }
+            function func(){};
+            function tmpFn(...arg){
+                return fn.apply(this instanceof tmpFn ? this : context,[...bindArgs,...arg])
+            }
+            if(this.prototype){
+                func.prototype = this.prototype
+            }
+            tmpFn.prototype = new func();
+            return tmpFn;
+        }
+        
+        const Cat = Animal.myBind(null, 'cat');
+        const cat = new Cat('white');
+        if (cat.say() === 'I\'m a white cat' && cat instanceof Cat && cat instanceof Animal) {
+         console.log('success');
+        }
+    </script>
+  </body>
+</html>

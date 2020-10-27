@@ -1,0 +1,45 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-22 10:07:49
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-22 11:07:58
+ * @description: In User Settings Edit
+ * @FilePath: \Js\柯里化\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sum(a, b, c) {
+        return a + b + c;
+      }
+
+      function fn(a, b, c, d, e) {
+        console.log(a ,b, c, d, e);
+      }
+      const Curry = function (fn) {
+        let len = fn.length;
+        let args = [];
+        let tmp = function (...arg) {
+          args = [...args, ...arg];
+          if (args.length < len) {
+            return tmp;
+          } else {
+            return fn.call(this, ...args);
+          }
+        };
+        return tmp;
+      };
+
+      const _sum = Curry(sum);
+      const _fn = Curry(fn);
+      _fn(1,2,3,4,5);
+    
+    </script>
+  </body>
+</html>

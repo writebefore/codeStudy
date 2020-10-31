@@ -1,0 +1,30 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-29 14:48:56
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-29 14:52:04
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\instanceof.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function myInstanceof(origin, target){
+            let proto = origin.__proto__;
+            while(proto != null){
+                if(proto === target.prototype){
+                    return true
+                }
+                proto = proto.__proto__
+            }
+            return false
+        }
+    </script>
+</body>
+</html>

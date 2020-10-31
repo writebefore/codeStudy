@@ -1,0 +1,30 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-29 15:01:08
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-29 15:12:36
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\元编程.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 元编程 修改自定义语言默认行为
+      // 修改 instanceof 行为 Symbol.hasInstance
+      class Array1 {
+        static [Symbol.hasInstance](instance) {
+          return Array.isArray(instance);
+        }
+      }
+
+      console.log([] instanceof Array1);
+      // expected output: true
+    </script>
+  </body>
+</html>

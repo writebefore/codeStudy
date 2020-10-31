@@ -1,0 +1,28 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-29 16:38:45
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-29 16:46:17
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\单利.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      Person.instance = null;
+      function Person() {
+          if(!Person.instance){
+            Person.instance = this;
+          }
+          return Person.instance
+      }
+      console.log(new Person() === new Person());
+    </script>
+  </body>
+</html>

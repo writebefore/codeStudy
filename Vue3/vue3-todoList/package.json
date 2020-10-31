@@ -1,11 +1,12 @@
 {
-  "name": "vue3-demo",
+  "name": "vue3-todoList",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
   },
   "dependencies": {
+    "todomvc-app-css": "^2.3.0",
     "vue": "^3.0.0-rc.1"
   },
   "devDependencies": {

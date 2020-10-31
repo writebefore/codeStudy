@@ -1,0 +1,50 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-30 14:43:14
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-30 15:22:13
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\url参数解析.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const testURL = "https://www.youzan.com?name=coder&age=20&callback=https%3A%2F%2Fyouzan.com%3Fname%3Dtest&list[]=a&list[]=b&json=%7B%22str%22%3A%22abc%22,%22num%22%3A123%7D&illegal=C%9E5%H__a100373__b4";
+      console.log();
+      const decodeUrlQuery = (url) => {
+        const queryStrArr = url.split("?")[1].split("&");
+        let query = {};
+        for (let item of queryStrArr) {
+          const data = item.split("=");
+          let name = data[0];
+          if (data[0].includes("[]")) {
+            name = name.replace("[]", "");
+            if (!query[name]) {
+              query[name] = [];
+            }
+            query[name].push(decodeURIApi(data[1]));
+          } else if (name === "json") {
+            query[name] = JSON.parse(decodeURIApi(data[1]));
+          } else {
+            query[name] = decodeURIApi(data[1]);
+          }
+        }
+        return query;
+      };
+      const decodeURIApi = (str) => {
+        try {
+          return decodeURIComponent(str);
+        } catch (e) {
+          return "";
+        }
+      };
+      console.log(decodeUrlQuery(testURL));
+    </script>
+  </body>
+</html>

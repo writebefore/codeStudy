@@ -1,0 +1,28 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-29 15:45:58
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-29 15:50:03
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\reduce实现map.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Array.prototype.myReduce = function(fn){
+            const context = this;
+            return context.reduce((res,cur)=>{
+                return[...res,fn.call(this,cur)]
+            },[])
+        }
+        let arr = [1,2,3]
+        console.log(arr.myReduce((item) => item + 1));
+    </script>
+</body>
+</html>

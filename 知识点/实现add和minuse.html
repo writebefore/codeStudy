@@ -1,0 +1,28 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-10-29 16:33:42
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-10-29 16:35:37
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\实现add和minuse.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Number.prototype.add = function(num){
+            return this + num; 
+        }
+
+        Number.prototype.minus = function(num){
+            return this - num
+        }
+        console.log((10).add(10).minus(2));
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-11-01 12:39:26
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-11-01 12:51:31
+ * @description: In User Settings Edit
+ * @FilePath: \设计模式\装饰器模式\装饰器index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 原写法
+        // function Car(){
+        //     this.price = 10;
+        // }
+        // Car.prototype = {
+        //     addHeatSeat: function(){
+        //         this.hasHeatSeat = true;
+        //         this.price += 2;
+        //     },
+        //     addAutoMirror: function(){
+        //         this.hasAutoMirror = true;
+        //         this.price = 0.8;
+        //     }
+        // }
+
+        // var car1 = new Car();
+        // console.log(car1.price);
+        // car1.addHeatSeat();
+        // car1.addAutoMirror();
+        // console.log(car1.price);
+
+        // 装饰器模式的写法
+        function Car(){
+            this.price = 10;
+        }
+
+        function carWithHeatSeat(carClass){
+            carClass.hasHeatSeat = true;
+            carClass.price += 2;
+        }
+
+        function carWithAutoMirror(carClass){
+            carClass.hasAutoMirror = true;
+            carClass.price += 0.8;
+        }
+
+        var car2 = new Car();
+        console.log(car2.price);
+        carWithHeatSeat(car2);
+        carWithAutoMirror(car2);
+        console.log(car2.price);
+    </script>    
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-11-02 16:20:58
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-11-02 16:43:05
+ * @description: In User Settings Edit
+ * @FilePath: \发布订阅模式\test.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Event {
+        constructor() {
+          this.listen = {};
+        }
+        on(name, cb) {
+          if (this.listen[name] === undefined) {
+            this.listen[name] = [];
+          }
+          this.listen[name].push(cb);
+        }
+        emit(name, msg) {
+          if (this.listen[name] === undefined) {
+            return;
+          }
+          const action = this.listen[name];
+          action.forEach((item) => {
+            item(msg);
+          });
+        }
+      }
+      const ev = new Event();
+      const ev2 = new Event();
+
+      ev.on("price", (msg) => {
+        console.log(1, msg);
+      });
+      ev.on("price", (msg) => {
+        console.log(2, msg);
+      });
+      ev.emit("price", "价格升高了");
+    </script>
+  </body>
+</html>

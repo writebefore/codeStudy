@@ -1,0 +1,58 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-11-03 15:20:10
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-11-03 15:53:07
+ * @description: In User Settings Edit
+ * @FilePath: \知识点\限制并发PromiseAll.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sleep(t) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(t);
+          }, t);
+        });
+      }
+
+      const time = function (t) {
+        return function () {
+          return sleep(t);
+        };
+      };
+
+      Promise.limitAll = function (promiseArr, limit) {
+        let i = 0, count = 0, pending = 0, res = [];
+        return new Promise((resolve, reject) => {
+          requestWork();
+          function requestWork() {
+            while (pending < limit && i < promiseArr.length){
+                pending ++;
+                let total = i;
+                const creator = promiseArr[i++];
+                creator().then((r) => {
+                    console.log(r);
+                    res[total] = r;
+                    pending --;
+                    count ++;
+                    count >= promiseArr.length ? resolve(res) : requestWork();
+                })
+            }
+          }
+        });
+      };
+
+      Promise.limitAll([time(1000),time(500),time(300),time(400)],2).then(r => {
+          console.log(r)
+      })
+    </script>
+  </body>
+</html>

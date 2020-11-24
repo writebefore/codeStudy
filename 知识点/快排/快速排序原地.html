@@ -2,23 +2,58 @@
  * @Author: LHN
  * @Date: 2020-10-26 16:32:10
  * @LastEditors: LHN
- * @LastEditTime: 2020-10-26 16:50:27
+ * @LastEditTime: 2020-11-16 19:02:34
  * @description: In User Settings Edit
- * @FilePath: \知识点\快排\快速排序原地.html
+ * @FilePath: \快排\快速排序原地.html
 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        let arr = [5, 1, 3, 7, 8, 5, 4, 2, 3, 4];
-        const quickSort = () => {
-            
+      let arr = [5, 1, 3, 7, 8, 5, 4, 2, 3, 4]; 
+    //   const quickSort = (arr, i, j) => {
+    //     if(i >= j) return;
+    //     let left = i, right = j;
+    //     let base = arr[left];
+    //     while (left < right) {
+    //       while (arr[right] >= base && left < right) {
+    //         right--;
+    //       }
+    //       arr[left] = arr[right];
+    //       while (arr[left] <= base && left < right) {
+    //         left++;
+    //       }
+    //       arr[right] = arr[left];
+    //     }
+    //     arr[left] = base;
+    //     console.log(arr);
+    //     quickSort(arr,i,left-1);
+    //     quickSort(arr,left+1,j);
+    //   };
+      const quickSort = (arr, i, j) => {
+        if(i >= j) return;
+        let left = i, right = j, base = arr[left];
+        while(left < right){
+            while(arr[right] >= base && left < right){
+                right --;
+            }
+            arr[left] = arr[right];
+            while (arr[left] <= base && right > left){
+                left ++;
+            }
+            arr[right] = arr[left];
         }
+        arr[left] = base;
+        quickSort(arr, i, left-1);
+        quickSort(arr, left+1, j);
+      }
+      quickSort(arr,0,arr.length-1)
+      console.log(arr);
     </script>
-</body>
+  </body>
 </html>

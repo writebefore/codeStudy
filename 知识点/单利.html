@@ -2,7 +2,7 @@
  * @Author: LHN
  * @Date: 2020-10-29 16:38:45
  * @LastEditors: LHN
- * @LastEditTime: 2020-10-29 16:46:17
+ * @LastEditTime: 2020-11-10 09:18:43
  * @description: In User Settings Edit
  * @FilePath: \知识点\单利.html
 -->
@@ -23,6 +23,17 @@
           return Person.instance
       }
       console.log(new Person() === new Person());
+
+      const Test = (function() {
+        let instance = null;
+        return function(){
+          if(!instance){
+            instance = this;
+          }
+          return instance;
+        }  
+      }())
+      console.log(new Test() === new Test());
     </script>
   </body>
 </html>

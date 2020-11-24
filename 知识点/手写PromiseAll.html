@@ -2,21 +2,48 @@
  * @Author: LHN
  * @Date: 2020-10-31 10:37:55
  * @LastEditors: LHN
- * @LastEditTime: 2020-10-31 14:51:05
+ * @LastEditTime: 2020-11-03 15:19:43
  * @description: In User Settings Edit
  * @FilePath: \知识点\手写PromiseAll.html
 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        // 实现Promise all
-        
+      // 实现Promise all
+    //   function sleep(t) {
+    //     return new Promise((resolve, reject) => {
+    //       setTimeout(() => {
+    //         resolve(t);
+    //       }, t);
+    //     });
+    //   }
+
+    //   Promise.all([sleep(1000), sleep(500), sleep(300), sleep(400)]).then((r) => {
+    //     console.log(r);
+    //   });
+
+    Promise.myall = function(promiseArr){
+        const result = [];
+        let count = 0;
+        return new Promise((resolve,reject) => {
+            for(let i =0 ;i < promiseArr.length; i ++){
+                promiseArr[i].then(res => {
+                    arr[i] = res;
+                    count ++;
+                    if(count === promiseArr.length ) resolve(result);
+                }).catch(err => {
+                    reject(err)
+                })
+            }
+        }) 
+    }
+
     </script>
-</body>
+  </body>
 </html>

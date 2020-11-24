@@ -1,0 +1,83 @@
+<!--
+ * @Author: LHN
+ * @Date: 2020-11-01 13:03:55
+ * @LastEditors: LHN
+ * @LastEditTime: 2020-11-01 14:09:39
+ * @description: In User Settings Edit
+ * @FilePath: \设计模式\观察者模式\观察者模式.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const msgCenter = (function(){
+            var _msg = {}; // 存储消息
+
+            return {
+                // 用于订阅一个消息
+                register: function(type, fn){
+                    if(_msg[type]){
+                        _msg[type].push(fn);
+                    }else{
+                        _msg[type] = [fn];
+                    }
+                },
+                // 用于发布消息
+                fire: function(type, args){
+                    if(!_msg[type]){
+                        return;
+                    }
+                    const event = {
+                        type: type,
+                        args: args || {}
+                    }
+                    for(let item of _msg[type]){
+                        item(event);
+                    }
+                },
+                // 用于取消订阅的消息
+                cancel: function(type, fn){
+                    if(!_msg[type]){
+                        return;
+                    }
+                    for(let i = 0; i < _msg[type].length; i ++){
+                        if(_msg[type][i] === fn){
+                            _msg[type].splice(i,1);
+                            break;
+                        }
+                    }
+                }
+            }
+        }())
+
+        function Person(){
+            this.alreadyRegister = {};
+        }
+        Person.prototype.register = function(type, fn){
+            if(this.alreadyRegister[type] === type){
+                console.log("您已经订阅过该消息了!");
+            }
+            msgCenter.register(type, fn);
+            this.alreadyRegister[type] = fn;
+        }
+
+        Person.prototype.cancel = function(type){
+            msgCenter.cancel(type, this.alreadyRegister[type]);
+            delete this.alreadyRegister[type];
+        }
+
+        let person1 = new Person();
+        let person2 = new Person();
+        let person3 = new Person();
+
+        person1.register('carInfo', function(e){
+            console.log(`person1得到了关于${e.type}的消息，消息内容是：${e.args}`);
+        });
+    </script>
+</body>
+</html>
